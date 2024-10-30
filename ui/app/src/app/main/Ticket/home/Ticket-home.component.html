@@ -1,0 +1,69 @@
+<o-form-layout-manager attr="Ticket" mode="tab" title="TICKET">
+    <div fxFill fxLayout="column" fxLayoutAlign="start">
+        <o-table 
+            attr="TicketTable" 
+            service="Ticket" 
+            entity="Ticket" 
+            title="TICKET"
+            keys="id"
+            columns="id;cattle_ride_id;food_stall_id;ride_id;visitor_id;purchase_datetime" 
+            header-actions="R;D"
+            visible-columns="id;cattle_ride_id;food_stall_id;ride_id;visitor_id;purchase_datetime"  
+            sort-columns="id" 
+            query-rows="20" 
+            quick-filter="yes"
+            row-height="medium" 
+            select-all-checkbox="true" 
+            pageable="yes"  
+            auto-adjust="true" 
+            virtual-scroll="yes" 
+            edition-mode="dblclick"
+            horizontal-scroll="yes"
+            show-title="yes"
+            export-button="yes">
+            
+            <o-table-column #id attr="id" title=" id*" type="integer" editable="no" required="no" content-align="center"></o-table-column>
+            
+            <o-table-column attr="cattle_ride_id" title="cattle_ride_id">
+    <o-table-cell-renderer-service attr="cattle_ride_id" 
+        service="CattleRide" entity="CattleRideType" columns="id;name"
+        parent-keys="id:cattle_ride_id"
+        value-column="name" keys="cattle_ride_id"
+        visible-columns="name" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+            
+            <o-table-column attr="food_stall_id" title="food_stall_id">
+    <o-table-cell-renderer-service attr="food_stall_id" 
+        service="FoodStall" entity="FoodStallType" columns="id;name"
+        parent-keys="id:food_stall_id"
+        value-column="name" keys="food_stall_id"
+        visible-columns="name" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+            
+            <o-table-column attr="ride_id" title="ride_id">
+    <o-table-cell-renderer-service attr="ride_id" 
+        service="Ride" entity="RideType" columns="id;name"
+        parent-keys="id:ride_id"
+        value-column="name" keys="ride_id"
+        visible-columns="name" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+            
+            <o-table-column attr="visitor_id" title="visitor_id">
+    <o-table-cell-renderer-service attr="visitor_id" 
+        service="ParkVisitor" entity="ParkVisitorType" columns="id;first_name"
+        parent-keys="id:visitor_id"
+        value-column="first_name" keys="visitor_id"
+        visible-columns="first_name" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+            
+            <o-table-column #purchase_datetime attr="purchase_datetime" title="purchase_datetime" editable="no" required="no" content-align="left"></o-table-column>
+            
+            <o-table-context-menu></o-table-context-menu>
+            <o-table-paginator page-size-options="24;48;96"></o-table-paginator>
+        </o-table>
+    </div>
+</o-form-layout-manager>

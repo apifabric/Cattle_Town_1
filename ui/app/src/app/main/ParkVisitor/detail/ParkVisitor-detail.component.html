@@ -1,0 +1,155 @@
+<div class="container">
+<o-form-container breadcrumb="yes" breadcrumb-label-columns="first_name" breadcrumb-separator=", " class="fill-form">
+      <o-form #form attr="ParkVisitor_form_edit" 
+        service="ParkVisitor" 
+        entity="ParkVisitor" 
+        fxLayout="column" 
+        show-header="yes" 
+        header-actions="R;I;U;D"
+        #oDetailForm keys="id" 
+        keys-sql-types="INTEGER" 
+        show-header-navigation="yes"
+        (onDataLoaded)="onDataLoaded($event)">
+
+  <o-row attr="row1" layout-align="start stretch">
+    <div fxLayout="row wrap" fxLayoutAlign="start start" fxFlex fxLayoutGap="14px">
+      
+      <o-text-input #first_name attr="first_name" label=" first_name*" enabled="yes" required="yes" fxFlex="20%" class="form-field"></o-text-input>
+      
+      <o-text-input #last_name attr="last_name" label="last_name" enabled="yes" required="yes" fxFlex="20%" class="form-field"></o-text-input>
+      
+      <o-date-input #visit_date attr="visit_date" type="timestamp" label="visit_date" editable="no" required="no" format="LL" fxFlex="20%" class="form-field"></o-date-input>
+      
+      <o-integer-input #id attr="id" label="id" type="integer" editable="no" required="no" ></o-integer-input>
+      
+    </div>
+  </o-row>
+      
+      <mat-tab-group fxFill>
+        
+        <mat-tab label="PURCHASE-visitor_id">
+    <div layout-padding>
+      <o-table 
+        attr="PurchaseTable" 
+        service="Purchase" 
+        entity="Purchase" 
+        keys="id"
+        parent-keys="visitor_id:id"
+        columns="id;visitor_id;total_amount;purchase_date"  
+        horizontal-scroll="yes"
+        detail-form-route="Purchase" 
+        edit-form-route="Purchase"
+        visible-columns="id;visitor_id;total_amount;purchase_date"  
+        sort-columns="id" 
+        query-rows="25" 
+        quick-filter="yes"
+        row-height="medium" 
+        select-all-checkbox="true" 
+        pageable="yes"  
+        auto-adjust="true" 
+        virtual-scroll="yes" 
+        insert-button="yes" 
+        delete-button="yes" 
+        fixed-header="true" 
+        class="vertical-padding-8"
+        edition-mode="dblclick" 
+        horizontal-scroll="yes" class="fill-form">
+        
+          <o-table-column #id attr="id" title=" id*" type="integer" editable="no" required="no" content-align="center"></o-table-column>
+        
+          <o-table-column attr="visitor_id" title="visitor_id">
+    <o-table-cell-renderer-service attr="visitor_id" 
+        service="ParkVisitor" entity="ParkVisitorType" columns="id;first_name"
+        parent-keys="id:visitor_id"
+        value-column="first_name" keys="visitor_id"
+        visible-columns="first_name" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+        
+          <o-table-column #total_amount attr="total_amount" title="total_amount" type="currency" editable="no" required="yes" currency-symbol="$" currency-symbol-position="left" thousand-separator=","decimal-separator="."></o-table-column>
+        
+          <o-date-input #purchase_date attr="purchase_date" type="timestamp" label="purchase_date" editable="no" required="no" format="LL" fxFlex="20%" class="form-field"></o-date-input>
+        
+        <o-table-paginator page-size-options="25;50;100"></o-table-paginator>
+      </o-table>
+    </div>
+</mat-tab>
+        
+        <mat-tab label="TICKET-visitor_id">
+    <div layout-padding>
+      <o-table 
+        attr="TicketTable" 
+        service="Ticket" 
+        entity="Ticket" 
+        keys="id"
+        parent-keys="visitor_id:id"
+        columns="id;cattle_ride_id;food_stall_id;ride_id;visitor_id;purchase_datetime"  
+        horizontal-scroll="yes"
+        detail-form-route="Ticket" 
+        edit-form-route="Ticket"
+        visible-columns="id;cattle_ride_id;food_stall_id;ride_id;visitor_id;purchase_datetime"  
+        sort-columns="id" 
+        query-rows="25" 
+        quick-filter="yes"
+        row-height="medium" 
+        select-all-checkbox="true" 
+        pageable="yes"  
+        auto-adjust="true" 
+        virtual-scroll="yes" 
+        insert-button="yes" 
+        delete-button="yes" 
+        fixed-header="true" 
+        class="vertical-padding-8"
+        edition-mode="dblclick" 
+        horizontal-scroll="yes" class="fill-form">
+        
+          <o-table-column #id attr="id" title=" id*" type="integer" editable="no" required="no" content-align="center"></o-table-column>
+        
+          <o-table-column attr="cattle_ride_id" title="cattle_ride_id">
+    <o-table-cell-renderer-service attr="cattle_ride_id" 
+        service="CattleRide" entity="CattleRideType" columns="id;name"
+        parent-keys="id:cattle_ride_id"
+        value-column="name" keys="cattle_ride_id"
+        visible-columns="name" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+        
+          <o-table-column attr="food_stall_id" title="food_stall_id">
+    <o-table-cell-renderer-service attr="food_stall_id" 
+        service="FoodStall" entity="FoodStallType" columns="id;name"
+        parent-keys="id:food_stall_id"
+        value-column="name" keys="food_stall_id"
+        visible-columns="name" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+        
+          <o-table-column attr="ride_id" title="ride_id">
+    <o-table-cell-renderer-service attr="ride_id" 
+        service="Ride" entity="RideType" columns="id;name"
+        parent-keys="id:ride_id"
+        value-column="name" keys="ride_id"
+        visible-columns="name" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+        
+          <o-table-column attr="visitor_id" title="visitor_id">
+    <o-table-cell-renderer-service attr="visitor_id" 
+        service="ParkVisitor" entity="ParkVisitorType" columns="id;first_name"
+        parent-keys="id:visitor_id"
+        value-column="first_name" keys="visitor_id"
+        visible-columns="first_name" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+        
+          <o-table-column #purchase_datetime attr="purchase_datetime" title="purchase_datetime" editable="no" required="no" content-align="left"></o-table-column>
+        
+        <o-table-paginator page-size-options="25;50;100"></o-table-paginator>
+      </o-table>
+    </div>
+</mat-tab>
+        
+      </mat-tab-group>
+      
+    </o-form>
+  </o-form-container>
+</div>

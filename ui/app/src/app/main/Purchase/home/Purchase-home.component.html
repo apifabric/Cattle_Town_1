@@ -1,0 +1,44 @@
+<o-form-layout-manager attr="Purchase" mode="tab" title="PURCHASE">
+    <div fxFill fxLayout="column" fxLayoutAlign="start">
+        <o-table 
+            attr="PurchaseTable" 
+            service="Purchase" 
+            entity="Purchase" 
+            title="PURCHASE"
+            keys="id"
+            columns="id;visitor_id;total_amount;purchase_date" 
+            header-actions="R;D"
+            visible-columns="id;visitor_id;total_amount;purchase_date"  
+            sort-columns="id" 
+            query-rows="20" 
+            quick-filter="yes"
+            row-height="medium" 
+            select-all-checkbox="true" 
+            pageable="yes"  
+            auto-adjust="true" 
+            virtual-scroll="yes" 
+            edition-mode="dblclick"
+            horizontal-scroll="yes"
+            show-title="yes"
+            export-button="yes">
+            
+            <o-table-column #id attr="id" title=" id*" type="integer" editable="no" required="no" content-align="center"></o-table-column>
+            
+            <o-table-column attr="visitor_id" title="visitor_id">
+    <o-table-cell-renderer-service attr="visitor_id" 
+        service="ParkVisitor" entity="ParkVisitorType" columns="id;first_name"
+        parent-keys="id:visitor_id"
+        value-column="first_name" keys="visitor_id"
+        visible-columns="first_name" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+            
+            <o-table-column #total_amount attr="total_amount" title="total_amount" type="currency" editable="no" required="yes" currency-symbol="$" currency-symbol-position="left" thousand-separator=","decimal-separator="."></o-table-column>
+            
+            <o-date-input #purchase_date attr="purchase_date" type="timestamp" label="purchase_date" editable="no" required="no" format="LL" fxFlex="20%" class="form-field"></o-date-input>
+            
+            <o-table-context-menu></o-table-context-menu>
+            <o-table-paginator page-size-options="24;48;96"></o-table-paginator>
+        </o-table>
+    </div>
+</o-form-layout-manager>

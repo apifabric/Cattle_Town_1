@@ -1,0 +1,111 @@
+{
+    "name": "Cattle Kingdom Adventure Park",
+    "logo": {
+        "Type": "Logo",
+        "name": "Cattle Kingdom Logo",
+        "description": "A playful image of a cartoon cow wearing a crown, symbolizing the grandeur and fun of the amusement park."
+    },
+    "sections": [
+        {
+            "title": "Welcome to Cattle Kingdom",
+            "subtitle": "The Ultimate Cow-fari Experience",
+            "name": "header",
+            "label": "Home",
+            "content": "Step into a world where adventure meets tradition at **Cattle Kingdom Adventure Park**. Nestled in wide open spaces, our park offers a unique blend of thrilling rides, authentic cattle experiences, and tantalizing food, ensuring fun for the entire family.",
+            "order": 1,
+            "Type": "Hero",
+            "images": [
+                {
+                    "Type": "Hero",
+                    "name": "Park Entrance Image",
+                    "description": "A vibrant photo capturing guests entering the park through a grand archway shaped like a massive bull's head."
+                }
+            ]
+        },
+        {
+            "title": "About Cattle Kingdom",
+            "subtitle": "",
+            "name": "about",
+            "label": "About",
+            "content": "Established with a vision to combine the timeless charm of cattle ranching with modern amusement, Cattle Kingdom brings to life a magical experience for all ages. \n\nFrom exhilarating rides to serene cow-back adventures, there's something for everyone. Gaze over our spectacular pastures from the top of the \"Gamble Graze\", or enjoy a peaceful meal while watching the beauty of roaming cattle. Our dedication is to preserve the cultural legacy of ranching while providing unparalleled entertainment.",
+            "order": 2,
+            "Type": "About",
+            "images": [
+                {
+                    "Type": "Gallery",
+                    "name": "Park Scenery",
+                    "description": "Beautiful views of the cattle and park attractions at sunset."
+                }
+            ]
+        },
+        {
+            "title": "Our Services and Attractions",
+            "subtitle": "Rides, Games, and Gastronomy",
+            "name": "services",
+            "label": "Services",
+            "content": "### Enjoy:  \n- **Cattle Rides:** Experience the gentle giant rides on our well-cared cattle with options for all ages.  \n- **The Rodeo Rush:** Thrill to the dynamic excitement of rodeo-themed rides.  \n- **Cowboy Casino:** Channel your inner gambler and join classic and modern games of chance!  \n- **Authentic Eats:** Relish delicious, locally sourced steaks and burgers at our signature restaurant \"Grazers.\"  \n- **Cattle Exhibitions:** Learn about and interact with our splendid herd, each cow with its own story.  \n- **Gamble Graze:** An exciting chance to win exclusive prizes!  \n\nDiscover more when you visit us, as we add seasonal attractions and events.",
+            "order": 3,
+            "Type": "Services",
+            "images": [
+                {
+                    "Type": "Promotional",
+                    "name": "Cow Riding Image",
+                    "description": "Visitors having fun riding on real cows with trained handlers."
+                },
+                {
+                    "Type": "ItemListing",
+                    "name": "Casino games",
+                    "description": "A variety of games available at the Cowboy Casino."
+                }
+            ]
+        },
+        {
+            "title": "Meet Our Stars",
+            "subtitle": "The Cattle of Cattle Kingdom",
+            "name": "our_cattle",
+            "label": "Cattle",
+            "content": "Meet the heart of Cattle Kingdom\u2014our cherished cows:  \n- **Bessie:** Loves frosty mornings and crunching on fresh clover.  \n- **Mooana:** Known for her quirky spots and love for photo ops!  \n- **Daisy:** A gentle giant and our most mature ride-worthy cattle.  \n\nEach member of our herd is lovingly cared for, ensuring their wellbeing and happiness.",
+            "order": 4,
+            "Type": "About",
+            "images": [
+                {
+                    "Type": "Gallery",
+                    "name": "Cattle Portraits",
+                    "description": "A collection of portraits of our cows, each with their unique personality."
+                }
+            ]
+        },
+        {
+            "title": "Past Medical Treatments",
+            "subtitle": "Our Care Commitment",
+            "name": "medical",
+            "label": "Care",
+            "content": "Our cattle receive the utmost care with regular medical check-ups and treatments as needed to ensure they remain healthy and happy.  \n\n**Recent Treatments Include:**  \n- **Bessie:** Regular hoof care and vaccinations.  \n- **Mooana:** Dental check-up in June.  \n- **Daisy:** Skin allergy treatment last month.",
+            "order": 5,
+            "Type": "About",
+            "images": [
+                {
+                    "Type": "Infographic",
+                    "name": "Treatment Chart",
+                    "description": "An infographic showing the treatment timeline and care routines for our cows."
+                }
+            ]
+        },
+        {
+            "title": "Contact Us",
+            "subtitle": "Join the Adventure Today",
+            "name": "contact",
+            "label": "Contact",
+            "content": "### Get in Touch!  \nWe're excited to hear from you whether you're planning a visit or have questions.  \n\n- **Address:** 234 Pasture Lane, Moo Town, TX  \n- **Email:** contact@cattlekingdom.com  \n- **Phone:** 1-800-COW-FUNN  \n\n**Opening Hours:**  \nMonday to Friday - 09:00 AM to 09:00 PM  \nSaturday and Sunday - 08:00 AM to 10:00 PM",
+            "order": 6,
+            "Type": "Contact",
+            "images": [
+                {
+                    "Type": "Map",
+                    "name": "Park Location Map",
+                    "description": "A map showing the location of Cattle Kingdom Adventure Park."
+                }
+            ]
+        }
+    ]
+}

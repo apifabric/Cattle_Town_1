@@ -1,0 +1,551 @@
+about:
+  date: October 30, 2024 14:53:18
+  recent_changes: works with modified safrs-react-admin
+  version: 0.0.0
+api_root: '{http_type}://{swagger_host}:{port}/{api}'
+authentication: '{system-default}'
+entities:
+  AmusementPark:
+    columns:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR
+    - name: location
+      required: true
+      template: text
+      type: VARCHAR
+    - name: id
+      template: integer
+      type: INTEGER
+    description: Contains information about the amusement park.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: name
+    home_template: home_template.html
+    info_list: Contains information about the amusement park.
+    label: AmusementPark
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: tomany
+      fks:
+      - park_id
+      name: CattleRideList
+      resource: CattleRide
+    - direction: tomany
+      fks:
+      - park_id
+      name: FoodStallList
+      resource: FoodStall
+    - direction: tomany
+      fks:
+      - park_id
+      name: GamblingAttractionList
+      resource: GamblingAttraction
+    - direction: tomany
+      fks:
+      - park_id
+      name: RideList
+      resource: Ride
+    - direction: tomany
+      fks:
+      - park_id
+      name: StaffList
+      resource: Staff
+    type: AmusementPark
+  CattleRide:
+    columns:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR
+    - name: park_id
+      required: true
+      template: integer
+      type: INTEGER
+    - name: difficulty_level
+      template: text
+      type: VARCHAR
+    - name: id
+      template: integer
+      type: INTEGER
+    description: Specific rides on real cows.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: name
+    home_template: home_template.html
+    info_list: Specific rides on real cows.
+    label: CattleRide
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: tomany
+      fks:
+      - cattle_ride_id
+      name: CowRideParticipationList
+      resource: CowRideParticipation
+    - direction: tomany
+      fks:
+      - cattle_ride_id
+      name: TicketList
+      resource: Ticket
+    - direction: toone
+      fks:
+      - park_id
+      name: park
+      resource: AmusementPark
+    type: CattleRide
+  Cow:
+    columns:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR
+    - name: id
+      template: integer
+      type: INTEGER
+    - name: breed
+      template: text
+      type: VARCHAR
+    description: Includes each cow with a unique name.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: name
+    home_template: home_template.html
+    info_list: Includes each cow with a unique name.
+    label: Cow
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: tomany
+      fks:
+      - cow_id
+      name: CowRideParticipationList
+      resource: CowRideParticipation
+    - direction: tomany
+      fks:
+      - cow_id
+      name: MedicalTreatmentList
+      resource: MedicalTreatment
+    type: Cow
+  CowRideParticipation:
+    columns:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+      template: integer
+      type: INTEGER
+    - name: cattle_ride_id
+      required: true
+      template: integer
+      type: INTEGER
+    - name: cow_id
+      required: true
+      template: integer
+      type: INTEGER
+    description: Links cows and cattle rides indicating which cows participate in
+      which rides.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: id
+    home_template: home_template.html
+    info_list: Links cows and cattle rides indicating which cows participate in which
+      rides.
+    label: CowRideParticipation
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: toone
+      fks:
+      - cattle_ride_id
+      name: cattle_ride
+      resource: CattleRide
+    - direction: toone
+      fks:
+      - cow_id
+      name: cow
+      resource: Cow
+    type: CowRideParticipation
+  FoodStall:
+    columns:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR
+    - name: park_id
+      required: true
+      template: integer
+      type: INTEGER
+    - name: cuisine_type
+      template: text
+      type: VARCHAR
+    - name: id
+      template: integer
+      type: INTEGER
+    description: Details about food stalls operating within the park.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: name
+    home_template: home_template.html
+    info_list: Details about food stalls operating within the park.
+    label: FoodStall
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: tomany
+      fks:
+      - food_stall_id
+      name: TicketList
+      resource: Ticket
+    - direction: toone
+      fks:
+      - park_id
+      name: park
+      resource: AmusementPark
+    type: FoodStall
+  GamblingAttraction:
+    columns:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR
+    - name: park_id
+      required: true
+      template: integer
+      type: INTEGER
+    - name: min_age
+      required: true
+      template: integer
+      type: INTEGER
+    - name: id
+      template: integer
+      type: INTEGER
+    description: Information on gambling attractions.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: name
+    home_template: home_template.html
+    info_list: Information on gambling attractions.
+    label: GamblingAttraction
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: toone
+      fks:
+      - park_id
+      name: park
+      resource: AmusementPark
+    type: GamblingAttraction
+  MedicalTreatment:
+    columns:
+    - label: ' description*'
+      name: description
+      required: true
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR
+    - name: cow_id
+      required: true
+      template: integer
+      type: INTEGER
+    - name: treatment_date
+      type: DATETIME
+    - name: id
+      template: integer
+      type: INTEGER
+    description: Details on past medical treatments provided to any cow.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: description
+    home_template: home_template.html
+    info_list: Details on past medical treatments provided to any cow.
+    label: MedicalTreatment
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: toone
+      fks:
+      - cow_id
+      name: cow
+      resource: Cow
+    type: MedicalTreatment
+  ParkVisitor:
+    columns:
+    - label: ' first_name*'
+      name: first_name
+      required: true
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR
+    - name: last_name
+      required: true
+      template: text
+      type: VARCHAR
+    - name: visit_date
+      type: DATETIME
+    - name: id
+      template: integer
+      type: INTEGER
+    description: Information about visitors to the park.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: first_name
+    home_template: home_template.html
+    info_list: Information about visitors to the park.
+    label: ParkVisitor
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: tomany
+      fks:
+      - visitor_id
+      name: PurchaseList
+      resource: Purchase
+    - direction: tomany
+      fks:
+      - visitor_id
+      name: TicketList
+      resource: Ticket
+    type: ParkVisitor
+  Purchase:
+    columns:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+      template: integer
+      type: INTEGER
+    - name: visitor_id
+      required: true
+      template: integer
+      type: INTEGER
+    - name: total_amount
+      required: true
+      template: real
+      type: FLOAT
+    - name: purchase_date
+      type: DATETIME
+    description: Record of purchases made within the park including rides and food.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: id
+    home_template: home_template.html
+    info_list: Record of purchases made within the park including rides and food.
+    label: Purchase
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: toone
+      fks:
+      - visitor_id
+      name: visitor
+      resource: ParkVisitor
+    type: Purchase
+  Ride:
+    columns:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR
+    - name: park_id
+      required: true
+      template: integer
+      type: INTEGER
+    - name: Type
+      template: text
+      type: VARCHAR
+    - name: description
+      template: text
+      type: VARCHAR
+    - name: id
+      template: integer
+      type: INTEGER
+    description: Includes details about the various rides available in the park.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: name
+    home_template: home_template.html
+    info_list: Includes details about the various rides available in the park.
+    label: Ride
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: tomany
+      fks:
+      - ride_id
+      name: TicketList
+      resource: Ticket
+    - direction: toone
+      fks:
+      - park_id
+      name: park
+      resource: AmusementPark
+    type: Ride
+  Staff:
+    columns:
+    - label: ' first_name*'
+      name: first_name
+      required: true
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR
+    - name: park_id
+      required: true
+      template: integer
+      type: INTEGER
+    - name: last_name
+      required: true
+      template: text
+      type: VARCHAR
+    - name: role
+      template: text
+      type: VARCHAR
+    - name: id
+      template: integer
+      type: INTEGER
+    description: Details about the employees working in the park.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: first_name
+    home_template: home_template.html
+    info_list: Details about the employees working in the park.
+    label: Staff
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: toone
+      fks:
+      - park_id
+      name: park
+      resource: AmusementPark
+    type: Staff
+  Ticket:
+    columns:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+      template: integer
+      type: INTEGER
+    - name: cattle_ride_id
+      template: integer
+      type: INTEGER
+    - name: food_stall_id
+      template: integer
+      type: INTEGER
+    - name: ride_id
+      template: integer
+      type: INTEGER
+    - name: visitor_id
+      required: true
+      template: integer
+      type: INTEGER
+    - name: purchase_datetime
+      type: DATETIME
+    description: Tickets issued for rides, food, gambling, and cattle rides.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: id
+    home_template: home_template.html
+    info_list: Tickets issued for rides, food, gambling, and cattle rides.
+    label: Ticket
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: toone
+      fks:
+      - cattle_ride_id
+      name: cattle_ride
+      resource: CattleRide
+    - direction: toone
+      fks:
+      - food_stall_id
+      name: food_stall
+      resource: FoodStall
+    - direction: toone
+      fks:
+      - ride_id
+      name: ride
+      resource: Ride
+    - direction: toone
+      fks:
+      - visitor_id
+      name: visitor
+      resource: ParkVisitor
+    type: Ticket
+settings:
+  HomeJS: /admin-app/home.js
+  max_list_columns: 8
+  style_guide:
+    applicationLocales:
+    - en
+    - es
+    currency_symbol: $
+    currency_symbol_position: left
+    date_format: LL
+    decimal_max: '1000000000'
+    decimal_min: '0'
+    decimal_separator: .
+    edit_on_mode: dblclick
+    exclude_listpicker: false
+    include_translation: false
+    keycloak_client_id: alsclient
+    keycloak_realm: kcals
+    keycloak_url: http://localhost:8080
+    locale: en
+    max_decimal_digits: '4'
+    min_decimal_digits: '2'
+    mode: tab
+    pick_style: list
+    serviceType: OntimizeEE
+    startSessionPath: /auth/login
+    style: light
+    thousand_separator: ','
+    use_keycloak: false

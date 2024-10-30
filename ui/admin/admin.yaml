@@ -1,0 +1,371 @@
+about:
+  date: October 30, 2024 14:53:18
+  recent_changes: works with modified safrs-react-admin
+  version: 0.0.0
+api_root: '{http_type}://{swagger_host}:{port}/{api}'
+authentication: '{system-default}'
+info:
+  number_relationships: 13
+  number_tables: 12
+info_toggle_checked: true
+resources:
+  AmusementPark:
+    attributes:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+    - name: location
+      required: true
+    - name: id
+    description: Contains information about the amusement park.
+    info_list: Contains information about the amusement park.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - park_id
+      name: CattleRideList
+      resource: CattleRide
+    - direction: tomany
+      fks:
+      - park_id
+      name: FoodStallList
+      resource: FoodStall
+    - direction: tomany
+      fks:
+      - park_id
+      name: GamblingAttractionList
+      resource: GamblingAttraction
+    - direction: tomany
+      fks:
+      - park_id
+      name: RideList
+      resource: Ride
+    - direction: tomany
+      fks:
+      - park_id
+      name: StaffList
+      resource: Staff
+    type: AmusementPark
+    user_key: name
+  CattleRide:
+    attributes:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+    - name: park_id
+      required: true
+    - name: difficulty_level
+    - name: id
+    description: Specific rides on real cows.
+    info_list: Specific rides on real cows.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - cattle_ride_id
+      name: CowRideParticipationList
+      resource: CowRideParticipation
+    - direction: tomany
+      fks:
+      - cattle_ride_id
+      name: TicketList
+      resource: Ticket
+    - direction: toone
+      fks:
+      - park_id
+      name: park
+      resource: AmusementPark
+    type: CattleRide
+    user_key: name
+  Cow:
+    attributes:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+    - name: id
+    - name: breed
+    description: Includes each cow with a unique name.
+    info_list: Includes each cow with a unique name.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - cow_id
+      name: CowRideParticipationList
+      resource: CowRideParticipation
+    - direction: tomany
+      fks:
+      - cow_id
+      name: MedicalTreatmentList
+      resource: MedicalTreatment
+    type: Cow
+    user_key: name
+  CowRideParticipation:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: cattle_ride_id
+      required: true
+    - name: cow_id
+      required: true
+    description: Links cows and cattle rides indicating which cows participate in
+      which rides.
+    info_list: Links cows and cattle rides indicating which cows participate in which
+      rides.
+    tab_groups:
+    - direction: toone
+      fks:
+      - cattle_ride_id
+      name: cattle_ride
+      resource: CattleRide
+    - direction: toone
+      fks:
+      - cow_id
+      name: cow
+      resource: Cow
+    type: CowRideParticipation
+    user_key: id
+  FoodStall:
+    attributes:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+    - name: park_id
+      required: true
+    - name: cuisine_type
+    - name: id
+    description: Details about food stalls operating within the park.
+    info_list: Details about food stalls operating within the park.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - food_stall_id
+      name: TicketList
+      resource: Ticket
+    - direction: toone
+      fks:
+      - park_id
+      name: park
+      resource: AmusementPark
+    type: FoodStall
+    user_key: name
+  GamblingAttraction:
+    attributes:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+    - name: park_id
+      required: true
+    - name: min_age
+      required: true
+    - name: id
+    description: Information on gambling attractions.
+    info_list: Information on gambling attractions.
+    tab_groups:
+    - direction: toone
+      fks:
+      - park_id
+      name: park
+      resource: AmusementPark
+    type: GamblingAttraction
+    user_key: name
+  MedicalTreatment:
+    attributes:
+    - label: ' description*'
+      name: description
+      required: true
+      search: true
+      sort: true
+    - name: cow_id
+      required: true
+    - name: treatment_date
+      type: DATETIME
+    - name: id
+    description: Details on past medical treatments provided to any cow.
+    info_list: Details on past medical treatments provided to any cow.
+    tab_groups:
+    - direction: toone
+      fks:
+      - cow_id
+      name: cow
+      resource: Cow
+    type: MedicalTreatment
+    user_key: description
+  ParkVisitor:
+    attributes:
+    - label: ' first_name*'
+      name: first_name
+      required: true
+      search: true
+      sort: true
+    - name: last_name
+      required: true
+    - name: visit_date
+      type: DATETIME
+    - name: id
+    description: Information about visitors to the park.
+    info_list: Information about visitors to the park.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - visitor_id
+      name: PurchaseList
+      resource: Purchase
+    - direction: tomany
+      fks:
+      - visitor_id
+      name: TicketList
+      resource: Ticket
+    type: ParkVisitor
+    user_key: first_name
+  Purchase:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: visitor_id
+      required: true
+    - name: total_amount
+      required: true
+    - name: purchase_date
+      type: DATETIME
+    description: Record of purchases made within the park including rides and food.
+    info_list: Record of purchases made within the park including rides and food.
+    tab_groups:
+    - direction: toone
+      fks:
+      - visitor_id
+      name: visitor
+      resource: ParkVisitor
+    type: Purchase
+    user_key: id
+  Ride:
+    attributes:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+    - name: park_id
+      required: true
+    - name: Type
+    - name: description
+    - name: id
+    description: Includes details about the various rides available in the park.
+    info_list: Includes details about the various rides available in the park.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - ride_id
+      name: TicketList
+      resource: Ticket
+    - direction: toone
+      fks:
+      - park_id
+      name: park
+      resource: AmusementPark
+    type: Ride
+    user_key: name
+  Staff:
+    attributes:
+    - label: ' first_name*'
+      name: first_name
+      required: true
+      search: true
+      sort: true
+    - name: park_id
+      required: true
+    - name: last_name
+      required: true
+    - name: role
+    - name: id
+    description: Details about the employees working in the park.
+    info_list: Details about the employees working in the park.
+    tab_groups:
+    - direction: toone
+      fks:
+      - park_id
+      name: park
+      resource: AmusementPark
+    type: Staff
+    user_key: first_name
+  Ticket:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: cattle_ride_id
+    - name: food_stall_id
+    - name: ride_id
+    - name: visitor_id
+      required: true
+    - name: purchase_datetime
+      type: DATETIME
+    description: Tickets issued for rides, food, gambling, and cattle rides.
+    info_list: Tickets issued for rides, food, gambling, and cattle rides.
+    tab_groups:
+    - direction: toone
+      fks:
+      - cattle_ride_id
+      name: cattle_ride
+      resource: CattleRide
+    - direction: toone
+      fks:
+      - food_stall_id
+      name: food_stall
+      resource: FoodStall
+    - direction: toone
+      fks:
+      - ride_id
+      name: ride
+      resource: Ride
+    - direction: toone
+      fks:
+      - visitor_id
+      name: visitor
+      resource: ParkVisitor
+    type: Ticket
+    user_key: id
+settings:
+  HomeJS: /admin-app/home.js
+  max_list_columns: 8
+  style_guide:
+    applicationLocales:
+    - en
+    - es
+    currency_symbol: $
+    currency_symbol_position: left
+    date_format: LL
+    decimal_max: '1000000000'
+    decimal_min: '0'
+    decimal_separator: .
+    detail_mode: tab
+    edit_on_mode: dblclick
+    exclude_listpicker: false
+    include_translation: 'false'
+    keycloak_client_id: alsclient
+    keycloak_realm: kcals
+    keycloak_url: http://localhost:8080
+    locale: en
+    max_decimal_digits: '4'
+    min_decimal_digits: '2'
+    new_mode: dialog
+    pick_style: list
+    row_height: small,
+    serviceType: OntimizeEE
+    startSessionPath: /auth/login
+    style: light
+    thousand_separator: ','
+    use_keycloak: 'false'

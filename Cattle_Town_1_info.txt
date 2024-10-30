@@ -1,0 +1,1 @@
+make an application to run a cattle-themed amusement park including rides, gambling, and food.  also include cattle rides on real cows.  also provide a list of the cow, each with a unique name.  provide a list of any past medical treatments provided to any cow.  

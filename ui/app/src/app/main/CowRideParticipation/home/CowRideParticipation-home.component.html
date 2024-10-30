@@ -1,0 +1,49 @@
+<o-form-layout-manager attr="CowRideParticipation" mode="tab" title="COWRIDEPARTICIPATION">
+    <div fxFill fxLayout="column" fxLayoutAlign="start">
+        <o-table 
+            attr="CowRideParticipationTable" 
+            service="CowRideParticipation" 
+            entity="CowRideParticipation" 
+            title="COWRIDEPARTICIPATION"
+            keys="id"
+            columns="id;cattle_ride_id;cow_id" 
+            header-actions="R;D"
+            visible-columns="id;cattle_ride_id;cow_id"  
+            sort-columns="id" 
+            query-rows="20" 
+            quick-filter="yes"
+            row-height="medium" 
+            select-all-checkbox="true" 
+            pageable="yes"  
+            auto-adjust="true" 
+            virtual-scroll="yes" 
+            edition-mode="dblclick"
+            horizontal-scroll="yes"
+            show-title="yes"
+            export-button="yes">
+            
+            <o-table-column #id attr="id" title=" id*" type="integer" editable="no" required="no" content-align="center"></o-table-column>
+            
+            <o-table-column attr="cattle_ride_id" title="cattle_ride_id">
+    <o-table-cell-renderer-service attr="cattle_ride_id" 
+        service="CattleRide" entity="CattleRideType" columns="id;name"
+        parent-keys="id:cattle_ride_id"
+        value-column="name" keys="cattle_ride_id"
+        visible-columns="name" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+            
+            <o-table-column attr="cow_id" title="cow_id">
+    <o-table-cell-renderer-service attr="cow_id" 
+        service="Cow" entity="CowType" columns="id;name"
+        parent-keys="id:cow_id"
+        value-column="name" keys="cow_id"
+        visible-columns="name" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+            
+            <o-table-context-menu></o-table-context-menu>
+            <o-table-paginator page-size-options="24;48;96"></o-table-paginator>
+        </o-table>
+    </div>
+</o-form-layout-manager>
